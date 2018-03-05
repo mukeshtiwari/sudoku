@@ -103,7 +103,9 @@
 (rows solved-board)
 
 (defn valid-rows? [board]
-  nil)
+  (every? (fn [x] (= x all-values)) (rows board)))
+
+(valid-rows? solved-board)
 
 (defn cols [board]
   (map (fn [c] (col-values board [0 c])) (range 9)))
@@ -112,20 +114,26 @@
 (cols solved-board)
 
 (defn valid-cols? [board]
-  nil)
+  (every? (fn [x] (= x all-values)) (cols board)))
 
+(valid-cols? solved-board)
 (coord-pairs [0 3 6])
+
 (defn blocks [board]
   (map (fn [bval] (block-values board bval)) (coord-pairs [0 3 6])))
 
 (defn valid-blocks? [board]
-  nil)
+  (every? (fn [x] (= x all-values)) (blocks board)))
 
 (blocks sudoku-board)
 (blocks solved-board)
+(valid-blocks? solved-board)
 
 (defn valid-solution? [board]
-  nil)
+  (and (valid-rows? board)
+       (valid-cols? board)
+       (valid-blocks? board)))
+
 
 (defn set-value-at [board coord new-value]
   nil)
