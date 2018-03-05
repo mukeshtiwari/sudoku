@@ -171,4 +171,11 @@
 (find-empty-point solved-board)
 
 (defn solve [board]
-  nil)
+  (if (filled? board)
+    (if (valid-solution? board) board [])
+    (let [coord (find-empty-point board)
+          solutions (map (fn [x] (solve (set-value-at board coord x))) (valid-values-for board coord))] ;; Can we have laziness here like Haskell ?
+      (first (filter (fn [sol] (not (empty? sol))) solutions)))))
+
+
+(= (solve sudoku-board) solved-board)
