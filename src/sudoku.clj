@@ -93,26 +93,36 @@
 (defn filled? [board]
   (not= 0 (some #{0} (flatten board))))
 
-(filled? sudoku-board)
+(filled? solved-board)
 
 
 (defn rows [board]
-  nil)
+  (map (fn [r] (row-values board [r 0])) (range 9)))
+
+(rows sudoku-board)
+(rows solved-board)
 
 (defn valid-rows? [board]
   nil)
 
 (defn cols [board]
-  nil)
+  (map (fn [c] (col-values board [0 c])) (range 9)))
+
+(cols sudoku-board)
+(cols solved-board)
 
 (defn valid-cols? [board]
   nil)
 
+(coord-pairs [0 3 6])
 (defn blocks [board]
-  nil)
+  (map (fn [bval] (block-values board bval)) (coord-pairs [0 3 6])))
 
 (defn valid-blocks? [board]
   nil)
+
+(blocks sudoku-board)
+(blocks solved-board)
 
 (defn valid-solution? [board]
   nil)
